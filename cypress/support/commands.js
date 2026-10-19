@@ -18,6 +18,33 @@
   cy.get(admin.login).click();
   cy.contains(expectedText).should("be.visible");
 });
+
+
+// находим название фильма в админке и извлекаем его текст для переменной
+Cypress.Commands.add("getMovie", () => {
+  const { movie } = require("../fixtures/movieSelector.json");
+
+    cy.get(movie.movieTitle).invoke("text");
+});
+
+Cypress.Commands.add("getSession", (movieTitle) => {
+  const { movie } = require("../fixtures/movieSelector.json");
+
+  cy.contains(movie.title, movieTitle).parents(movie.movie).as("targetMovie"); // находим фильм и сохраняем как алиас
+  cy.get("@targetMovie").find(movie.time).first().click(); // бранируем первое время в найденном фильме
+});
+
+Cypress.Commands.add("movieSeats", () => {
+  const { movie } = require("../fixtures/movieSelector.json");
+  const seats = require("../fixtures/seats.json");
+    
+  seats.forEach((seat) => {
+    cy.get(
+      `${movie.hall} ${movie.class}(${seat.row}) ${movie.class}(${seat.seat})`,
+    ).click();
+  });
+  cy.get(movie.accept).click();
+});
 //
 //
 // -- This is a child command --
