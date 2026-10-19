@@ -1,0 +1,21 @@
+{
+  "happyPath": {
+  "email": "qamid@qamid.ru",
+  "password": "qamid",
+  "expectedText": "Администраторррская"
+},
+
+"invalidEmail": {
+  "email": " ",
+  "password": "qamid",
+  "expectedText": "Ошибка авторизации"
+},
+
+"invalidPass": {
+  "email": "qamid@qamid.ru",
+  "password": " ",
+  "expectedText": "Ошибка авторизации"
+}
+
+
+}
