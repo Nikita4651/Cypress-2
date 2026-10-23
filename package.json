@@ -7,10 +7,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "cy:loginAdmin": "cypress run --group login --ci-build-id 1 --spec cypress/e2e/loginAdmin.cy.js --record --key 1ab3cf35-ee9d-4084-b25f-52acf1f13b34",
-    "cy:main": "cypress run --group main --ci-build-id 1 --spec cypress/e2e/main.cy.js --record --key 1ab3cf35-ee9d-4084-b25f-52acf1f13b34",
-    "cy:movie": "cypress run --group movie --ci-build-id 1 --spec cypress/e2e/movie.cy.js --record --key 1ab3cf35-ee9d-4084-b25f-52acf1f13b34",
+    "cy:loginAdmin": "cypress run --spec cypress/e2e/loginAdmin.cy.js --record --key 1ab3cf35-ee9d-4084-b25f-52acf1f13b34",
+    "cy:main": "cypress run --spec cypress/e2e/main.cy.js --record --key 1ab3cf35-ee9d-4084-b25f-52acf1f13b34",
+    "cy:movie": "cypress run --spec cypress/e2e/movie.cy.js --record --key 1ab3cf35-ee9d-4084-b25f-52acf1f13b34",
 
+    "cy:run:chrome": "npx cypress run --browser chrome",
+    "cy:parallel:chrome": "npx cypress run --browser chrome --record --parallel",
+
+    "test:parall": "npm run test:loginAdmin -- --browser chrome --group loginAdmin --ci-build-id 10 & npm run test:main -- --browser chrome --group main  --ci-build-id 10 & npm run test:movie -- --browser chrome --group movie  --ci-build-id 10",
     "test-login": "npx cypress run --group login --ci-build-id 11 --spec 'cypress/e2e/adminLogin.cy.js' --record --key 1a817dfd-e5b9-4f04-b767-4bcff62fe8f5",
     "test-booking": "npx cypress run --group booking --ci-build-id 11 --spec 'cypress/e2e/booking.cy.js' --record --key 1a817dfd-e5b9-4f04-b767-4bcff62fe8f5",
     "test-main": "npx cypress run --group main --ci-build-id 11 --spec 'cypress/e2e/main.cy.js' --record --key 1a817dfd-e5b9-4f04-b767-4bcff62fe8f5",
